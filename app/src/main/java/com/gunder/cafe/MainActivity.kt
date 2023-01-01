@@ -7,6 +7,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -53,5 +55,24 @@ fun Banner(modifier: Modifier = Modifier) {
             modifier = Modifier.height(160.dp)
         )
         SearchBar()
+    }
+}
+
+@Composable
+fun CategoryRow(
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        modifier = modifier.padding(16.dp)
+    ) {
+    }
+}
+
+
+@Composable
+@Preview(showBackground = true)
+fun CategoryRowPreview() {
+    CafeTheme {
+        CategoryRow()
     }
 }

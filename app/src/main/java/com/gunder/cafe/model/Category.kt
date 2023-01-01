@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.gunder.cafe.R
 
-class Category(@DrawableRes val imgCategory: Int, @StringRes val txtCategory: Int) {
-    val dummyListOf = listOf(
+data class Category(@DrawableRes val imgCategory: Int, @StringRes val txtCategory: Int) {
+    var dummyCategory = listOf(
         R.drawable.icon_category_all to R.string.category_all,
         R.drawable.icon_category_americano to R.string.category_americano,
         R.drawable.icon_category_cappuccino to R.string.category_cappuccino,

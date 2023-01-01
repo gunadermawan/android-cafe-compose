@@ -2,7 +2,7 @@ package com.gunder.cafe.model
 
 import com.gunder.cafe.R
 
-class Menu(val image: Int, val title: String, val price: String) {
+data class Menu(val image: Int, val title: String, val price: String) {
     private val dummyMenu = listOf(
         Menu(R.drawable.menu1, "Tiramisu Coffee Milk", "Rp 28.000"),
         Menu(R.drawable.menu2, "Pumpkin Spice Latte", "Rp 18.000"),
