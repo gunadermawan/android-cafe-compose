@@ -24,7 +24,7 @@ import com.gunder.cafe.ui.theme.CafeTheme
 fun CategoryItem(category: Category, modifier: Modifier = Modifier) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
-            painter = painterResource(category.imgCategory),
+            painter = painterResource(category.imageCategory),
             contentDescription = "null",
             modifier = Modifier
                 .size(60.dp)
@@ -33,7 +33,7 @@ fun CategoryItem(category: Category, modifier: Modifier = Modifier) {
                 )
         )
         Text(
-            text = stringResource(category.txtCategory),
+            text = stringResource(category.textCategory),
             fontSize = 10.sp,
             modifier = Modifier.paddingFromBaseline(top = 16.dp, bottom = 8.dp)
         )
