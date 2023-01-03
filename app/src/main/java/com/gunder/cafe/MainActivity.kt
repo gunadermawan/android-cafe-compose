@@ -20,10 +20,7 @@ import com.gunder.cafe.model.Menu
 import com.gunder.cafe.model.dummyBestSellerMenu
 import com.gunder.cafe.model.dummyCategory
 import com.gunder.cafe.model.dummyMenu
-import com.gunder.cafe.ui.components.CategoryItem
-import com.gunder.cafe.ui.components.MenuItem
-import com.gunder.cafe.ui.components.SearchBar
-import com.gunder.cafe.ui.components.SectionText
+import com.gunder.cafe.ui.components.*
 import com.gunder.cafe.ui.theme.CafeTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,12 +39,21 @@ class MainActivity : ComponentActivity() {
 fun CafeApp() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(stringResource(R.string.section_category))
-        CategoryRow()
-        SectionText(stringResource(R.string.section_favorite_menu))
-        MenuRow(dummyMenu)
-        SectionText(stringResource(R.string.section_best_seller_menu))
-        MenuRow(dummyBestSellerMenu)
+        HomeSection(title = stringResource(R.string.section_category), content = {
+            CategoryRow()
+        })
+//        SectionText(stringResource(R.string.section_category))
+//        CategoryRow()
+        HomeSection(stringResource(R.string.section_favorite_menu), Modifier) {
+            MenuRow(dummyMenu)
+        }
+//        SectionText(stringResource(R.string.section_favorite_menu))
+//        MenuRow(dummyMenu)
+        HomeSection(stringResource(R.string.section_best_seller_menu),Modifier) {
+            MenuRow(dummyBestSellerMenu)
+        }
+//        SectionText(stringResource(R.string.section_best_seller_menu))
+//        MenuRow(dummyBestSellerMenu)
     }
 }
 
