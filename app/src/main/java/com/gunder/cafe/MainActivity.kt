@@ -9,21 +9,21 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.gunder.cafe.model.Menu
-import com.gunder.cafe.model.dummyBestSellerMenu
-import com.gunder.cafe.model.dummyCategory
-import com.gunder.cafe.model.dummyMenu
-import com.gunder.cafe.ui.components.CategoryItem
-import com.gunder.cafe.ui.components.MenuItem
-import com.gunder.cafe.ui.components.SearchBar
-import com.gunder.cafe.ui.components.SectionText
+import com.gunder.cafe.model.*
+import com.gunder.cafe.ui.components.*
 import com.gunder.cafe.ui.theme.CafeTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,14 +40,29 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CafeApp() {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        Banner()
-        SectionText(stringResource(R.string.section_category))
-        CategoryRow()
-        SectionText(stringResource(R.string.section_favorite_menu))
-        MenuRow(dummyMenu)
-        SectionText(stringResource(R.string.section_best_seller_menu))
-        MenuRow(dummyBestSellerMenu)
+    Scaffold(
+        bottomBar = { BottomBar() }
+    ) { innerPadding ->
+        Column(modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .padding(innerPadding)) {
+            Banner()
+            HomeSection(title = stringResource(R.string.section_category), content = {
+                CategoryRow()
+            })
+//        SectionText(stringResource(R.string.section_category))
+//        CategoryRow()
+            HomeSection(stringResource(R.string.section_favorite_menu), Modifier) {
+                MenuRow(dummyMenu)
+            }
+//        SectionText(stringResource(R.string.section_favorite_menu))
+//        MenuRow(dummyMenu)
+            HomeSection(stringResource(R.string.section_best_seller_menu), Modifier) {
+                MenuRow(dummyBestSellerMenu)
+            }
+//        SectionText(stringResource(R.string.section_best_seller_menu))
+//        MenuRow(dummyBestSellerMenu)
+        }
     }
 }
 
@@ -106,5 +121,37 @@ fun MenuRow(listMenu: List<Menu>, modifier: Modifier = Modifier) {
             MenuItem(menu)
         }
     }
+}
 
+@Composable
+fun BottomBar(modifier: Modifier = Modifier) {
+    BottomNavigation(modifier = modifier) {
+        val navigationItems = listOf(
+            BottomBarItem(
+                title = stringResource(R.string.menu_home),
+                icon = Icons.Default.Home
+            ),
+            BottomBarItem(
+                title = stringResource(R.string.menu_favorite),
+                icon = Icons.Default.Favorite
+            ),
+            BottomBarItem(
+                title = stringResource(R.string.menu_profile),
+                icon = Icons.Default.AccountCircle
+            )
+        )
+        navigationItems.map {
+            BottomNavigationItem(
+                icon = {
+                    Icon(imageVector = it.icon, contentDescription = it.title)
+                },
+                label = {
+                    Text(it.title)
+                },
+                selected = it.title == navigationItems[0].title,
+                unselectedContentColor = Color.LightGray,
+                onClick = {}
+            )
+        }
+    }
 }
