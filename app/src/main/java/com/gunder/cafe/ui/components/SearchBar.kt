@@ -21,16 +21,19 @@ fun SearchBar(modifier: Modifier = Modifier) {
     TextField(
         value = "",
         onValueChange = {},
-        leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = null) },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null
+            )
+        },
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.surface,
             disabledIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
+            unfocusedIndicatorColor = Color.Transparent,
         ),
-        placeholder = {
-            Text(stringResource(com.gunder.cafe.R.string.placeholder_search))
-        },
+        placeholder = { Text(stringResource(com.gunder.cafe.R.string.placeholder_search)) },
         modifier = modifier
             .padding(16.dp)
             .fillMaxWidth()
