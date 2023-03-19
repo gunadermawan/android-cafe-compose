@@ -25,30 +25,28 @@ fun CategoryItem(category: Category, modifier: Modifier = Modifier) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(category.imageCategory),
-            contentDescription = "null",
+            contentDescription = null,
             modifier = Modifier
                 .size(60.dp)
-                .clip(
-                    CircleShape
-                )
+                .clip(CircleShape)
+                .padding(top = 8.dp)
         )
         Text(
             text = stringResource(category.textCategory),
             fontSize = 10.sp,
             modifier = Modifier.paddingFromBaseline(top = 16.dp, bottom = 8.dp)
         )
-
     }
 }
 
-@Preview(showBackground = true)
 @Composable
+@Preview(showBackground = true)
 fun CategoryItemPreview() {
-    CafeTheme {
+    CafeTheme() {
         CategoryItem(
             category = Category(
-                R.drawable.icon_category_cappuccino,
-                R.string.category_cappuccino
+                R.drawable.icon_category_americano,
+                R.string.category_americano
             ),
             modifier = Modifier.padding(horizontal = 8.dp)
         )

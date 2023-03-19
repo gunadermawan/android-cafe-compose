@@ -43,9 +43,11 @@ fun CafeApp() {
     Scaffold(
         bottomBar = { BottomBar() }
     ) { innerPadding ->
-        Column(modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(innerPadding)) {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+        ) {
             Banner()
             HomeSection(title = stringResource(R.string.section_category), content = {
                 CategoryRow()
@@ -91,12 +93,9 @@ fun Banner(modifier: Modifier = Modifier) {
 fun CategoryRow(
     modifier: Modifier = Modifier,
 ) {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-    ) {
-        items(dummyCategory, key = { it.textCategory }) { category ->
-            CategoryItem(category)
+    LazyRow(modifier = Modifier.padding(16.dp)) {
+        items(dummyCategory, key = { it.textCategory }) {
+            CategoryItem(it)
         }
     }
 }
