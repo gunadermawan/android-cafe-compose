@@ -24,8 +24,8 @@ fun MenuItem(menu: Menu, modifier: Modifier = Modifier) {
         Column {
             Image(
                 painter = painterResource(menu.image),
-                contentScale = ContentScale.Crop,
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp)
@@ -36,9 +36,7 @@ fun MenuItem(menu: Menu, modifier: Modifier = Modifier) {
                     text = menu.title,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle1.copy(
-                        fontWeight = FontWeight.Bold
-                    ),
+                    style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.ExtraBold)
                 )
                 Text(text = menu.price, style = MaterialTheme.typography.subtitle2)
             }

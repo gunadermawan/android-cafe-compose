@@ -8,11 +8,10 @@ import androidx.compose.ui.Modifier
 fun HomeSection(
     title: String,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Column(modifier) {
         SectionText(title, modifier)
         content()
     }
-
 }
