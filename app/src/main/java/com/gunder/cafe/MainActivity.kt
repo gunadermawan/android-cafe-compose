@@ -1,7 +1,6 @@
 package com.gunder.cafe
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -21,10 +20,7 @@ import com.gunder.cafe.model.Menu
 import com.gunder.cafe.model.dummyBestSeller
 import com.gunder.cafe.model.dummyCategory
 import com.gunder.cafe.model.dummyMenu
-import com.gunder.cafe.ui.components.CategoryItem
-import com.gunder.cafe.ui.components.MenuItem
-import com.gunder.cafe.ui.components.SearchBar
-import com.gunder.cafe.ui.components.SectionText
+import com.gunder.cafe.ui.components.*
 import com.gunder.cafe.ui.theme.CafeTheme
 
 class MainActivity : ComponentActivity() {
@@ -88,12 +84,23 @@ fun MenuRow(listMenu: List<Menu>, modifier: Modifier = Modifier) {
 fun CafeApp() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(stringResource(R.string.section_category))
-        CategoryRaw()
-        SectionText(stringResource(R.string.section_favorite_menu))
-        MenuRow(dummyMenu)
-        SectionText(stringResource(R.string.section_best_seller_menu))
-        MenuRow(listMenu = dummyBestSeller)
+//        slot based layout
+        HomeSection(
+            title = stringResource(R.string.section_category),
+            content = { CategoryRaw() })
+        HomeSection(
+            title = stringResource(R.string.section_favorite_menu),
+            content = { MenuRow(dummyMenu) })
+        HomeSection(title = stringResource(R.string.section_best_seller_menu),
+            content = {
+                MenuRow(dummyBestSeller)
+            })
+//        SectionText(stringResource(R.string.section_category))
+//        CategoryRaw()
+//        SectionText(stringResource(R.string.section_favorite_menu))
+//        MenuRow(dummyMenu)
+//        SectionText(stringResource(R.string.section_best_seller_menu))
+//        MenuRow(listMenu = dummyBestSeller)
     }
 }
 
